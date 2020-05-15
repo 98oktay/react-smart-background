@@ -115,7 +115,6 @@ temp/
 *.css
 *.htm
 *.html
-*.js
 *.jsp
 *.php
 *.rss
@@ -133,6 +132,7 @@ temp/
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+/build
 
 # Generated files
 .idea/**/contentModel.xml
