@@ -1,0 +1,112 @@
+$edgeSize: 100px;
+$blurSize: 30px;
+
+.smartBackground-background {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.smartBackground-image-placeholder {
+  height: 100%;
+  opacity: 0;
+}
+
+.smartBackground-containImage {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-position: right;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+}
+
+.smartBackground-blurBackground {
+  background: #000000;
+  flex: 1;
+  height: 100%;
+  position: relative;
+}
+
+.smartBackground-coverImage {
+  position: absolute;
+  background-position: center;
+  background-size: cover;
+  filter: blur($blurSize);
+  left: -$edgeSize;
+  right: -$edgeSize;
+  top: -$edgeSize;
+  bottom: -$edgeSize;
+}
+
+
+@mixin smartBackgroundDirectionHorizontal {
+  flex-direction: row;
+}
+
+@mixin smartBackgroundDirectionVertical {
+  flex-direction: column-reverse;
+
+  .smartBackground-blurBackground {
+    height: auto;
+    width: 100%;
+  }
+
+  .smartBackground-image-placeholder {
+    height: auto;
+    width: 100%;
+  }
+
+  .smartBackground-containImage {
+    background-position: top;
+    background-size: 100% auto;
+  }
+}
+
+.smartBackground-horizontal {
+  @include smartBackgroundDirectionHorizontal;
+}
+
+.smartBackground-vertical {
+  @include smartBackgroundDirectionVertical;
+}
+
+.smartBackground-right {
+  @include smartBackgroundDirectionHorizontal;
+}
+
+.smartBackground-left {
+  @include smartBackgroundDirectionHorizontal;
+  flex-direction: row-reverse;
+
+  .smartBackground-containImage {
+    background-position: left;
+  }
+}
+
+.smartBackground-top {
+  @include smartBackgroundDirectionVertical;
+}
+
+.smartBackground-bottom {
+  @include smartBackgroundDirectionVertical;
+  flex-direction: column;
+
+  .smartBackground-containImage {
+    background-position: bottom;
+  }
+}
+
+.smartBackground-auto {
+  @include smartBackgroundDirectionHorizontal;
+}
+
+@media all and (max-width: 576px) {
+  .smartBackground-auto {
+    @include smartBackgroundDirectionVertical;
+  }
+}
