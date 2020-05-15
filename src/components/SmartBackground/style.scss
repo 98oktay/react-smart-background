@@ -1,5 +1,6 @@
 $edgeSize: 100px;
 $blurSize: 30px;
+$breakWidth: 576px;
 
 .smartBackground-background {
   display: flex;
@@ -43,14 +44,12 @@ $blurSize: 30px;
   bottom: -$edgeSize;
 }
 
-
 @mixin smartBackgroundDirectionHorizontal {
   flex-direction: row;
 }
 
 @mixin smartBackgroundDirectionVertical {
   flex-direction: column-reverse;
-
   .smartBackground-blurBackground {
     height: auto;
     width: 100%;
@@ -105,7 +104,7 @@ $blurSize: 30px;
   @include smartBackgroundDirectionHorizontal;
 }
 
-@media all and (max-width: 576px) {
+@media all and (max-width: $breakWidth) {
   .smartBackground-auto {
     @include smartBackgroundDirectionVertical;
   }
